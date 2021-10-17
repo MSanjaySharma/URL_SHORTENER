@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+  redis:
+    image: "redis:alpine"
+    container_name: redis
+    ports:
+      - "6379:6379"
+    expose:
+      - 6379
+    restart: always
+    command: redis-server --bind redis --maxmemory 10mb --maxmemory-policy allkeys-lru --appendonly yes
+
+  app:
+    container_name: app
+    build:
+      context: ./
+    env_file: ./.env
+    command: npm run start
+    depends_on:
+      - redis
+      - mongo
+    volumes:
+      - .:/app/
+    ports:
+      - "7013:7013"
