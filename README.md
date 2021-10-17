@@ -5,7 +5,7 @@ Url Shortener is an API built on Express to serve the purpose shortening URL's a
 ### Usage
 
 Pre-req:
-MongoDB atlas URI or local installation of MONGODB. Change URI accordingly in env file
+MongoDB atlas URI or local installation of MONGODB. Change URI accordingly in env file and files where these variables are used.
 
 - Start the app
 ```
